@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Buku Catatan Toko</string>
+    <string name="title_activity_main">MainActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="lihat_catatan">Lihat catatan</string>
+    <string name="tambah_catatan">Tambah catatan</string>
+    <string name="logout">Logout</string>
+    <string name="login">LOGIN</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "954702243817",
+    "firebase_url": "https://binarbukucatatantoko.firebaseio.com",
+    "project_id": "binarbukucatatantoko",
+    "storage_bucket": "binarbukucatatantoko.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:954702243817:android:8f2915afdf7b9a6c",
+        "android_client_info": {
+          "package_name": "galih.binar.bukucatatantoko"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "954702243817-d51mte16uufhf6lqpa4q49pqmjlp41ef.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "galih.binar.bukucatatantoko",
+            "certificate_hash": "bbea5d3a3bd5ffd0e44da7752eaf08820792cf6f"
+          }
+        },
+        {
+          "client_id": "954702243817-1ilvabgr4pql1eapssvfo94qtcuuvlvc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBlNCxTgUi-1zom2SH7Dojv9cSSnRjJVY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "954702243817-1ilvabgr4pql1eapssvfo94qtcuuvlvc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
