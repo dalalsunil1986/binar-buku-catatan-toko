@@ -10,36 +10,71 @@ import java.util.Locale;
 
 import galih.binar.bukucatatantoko.Database.CatatanDBHelper;
 import galih.binar.bukucatatantoko.Helper.Common;
+import galih.binar.bukucatatantoko.Interfaces.GetDataFromDB;
 import galih.binar.bukucatatantoko.Interfaces.OnFinishListener;
 import galih.binar.bukucatatantoko.Model.Catatan;
-import galih.binar.bukucatatantoko.View.Fragments.TambahFragment;
+import galih.binar.bukucatatantoko.View.EditCatatanActivity;
 
 /**
  * Created by Galih Laras Prakoso on 7/8/2018.
  */
 
-public class TambahPresenter extends Presenter<TambahFragment> {
-    public Catatan catatan;
-    TambahFragment fragment;
-    DatePickerDialog.OnDateSetListener date;
-    Common c;
+public class EditCatatanPresenter extends Presenter<EditCatatanActivity> {
     CatatanDBHelper catatanDBHelper;
+    public Catatan catatan;
+    DatePickerDialog.OnDateSetListener date;
+
+    String ID;
 
     private static int PCS = 0;
     private static int DUS = 1;
 
-    public TambahPresenter(TambahFragment fragment){
-        super.setActivity(fragment);
+    Common c;
+
+    public EditCatatanPresenter(final EditCatatanActivity activity){
+        super.setActivity(activity);
         init();
     }
 
     private void init() {
-        fragment = (TambahFragment)activity;
-        c = new Common(fragment.getContext());
-        catatan = new Catatan();
-        initTanggalListener();
+        initDataCatatan();
+    }
+
+    private void initDataCatatan() {
         catatanDBHelper = new CatatanDBHelper();
 
+        c = new Common(activity);
+
+        catatan = new Catatan();
+
+        ID = activity.getIntent().getStringExtra("ID");
+
+        c.showL("Mengambil data catatan...");
+        final EditCatatanPresenter presenter = this;
+        catatanDBHelper.getCatatan(ID, new GetDataFromDB() {
+            @Override
+            public void getData(Boolean status, Object data) {
+                c.disL();
+                Catatan result = (Catatan)data;
+
+                catatan.nama = result.nama;
+                catatan.tanggal= result.tanggal;
+                catatan.banyak_barang = result.banyak_barang;
+                catatan.satuan = result.satuan;
+                catatan.pemasok = result.pemasok;
+                catatan.tanggal = result.tanggal;
+
+                if(result.satuan.equals("PCS")){
+                    activity.binding.actEditSatuan.setSelection(0);
+                }else{
+                    activity.binding.actEditSatuan.setSelection(1);
+                }
+
+                activity.binding.setPresenter(presenter);
+            }
+        });
+
+        initTanggalListener();
     }
 
     private void initTanggalListener() {
@@ -56,10 +91,10 @@ public class TambahPresenter extends Presenter<TambahFragment> {
             }
         };
 
-        fragment.binding.fragTambahTgl.setOnClickListener(new View.OnClickListener() {
+        activity.binding.actEditTgl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(fragment.getContext(), date, myCalendar
+                new DatePickerDialog(activity, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
@@ -69,27 +104,28 @@ public class TambahPresenter extends Presenter<TambahFragment> {
         String myFormat = "MM/dd/yy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
-        fragment.binding.fragTambahTgl.setText(sdf.format(myCalendar.getTime()));
+        activity.binding.actEditTgl.setText(sdf.format(myCalendar.getTime()));
     }
 
-    public void tambahCatatan(){
+    public void updateCatatan(){
         if(validasiInputCatatan()){
 
-            if(fragment.binding.fragTambahSatuan.getSelectedItemPosition()==PCS){
+            if(activity.binding.actEditSatuan.getSelectedItemPosition()==PCS){
                 catatan.satuan = "PCS";
             }else{
                 catatan.satuan = "DUS";
             }
 
-            c.showL("Menambahkan catatan...");
-            catatanDBHelper.tambahCatatan(catatan, new OnFinishListener() {
+            c.showL("Mengupdate catatan...");
+            catatanDBHelper.updateCatatan(ID,catatan, new OnFinishListener() {
                 @Override
                 public void onFinished(Boolean result) {
                     c.disL();
                     if(result){
-                        c.showT("Berhasil menambahkan catatan.");
+                        c.showT("Berhasil mengupdate catatan.");
+                        activity.finish();
                     }else{
-                        c.showT("Gagal menambahkan catatan.");
+                        c.showT("Gagal mengupdate catatan.");
                     }
                 }
             });
@@ -104,4 +140,6 @@ public class TambahPresenter extends Presenter<TambahFragment> {
                 && catatan.pemasok!=null && catatan.pemasok.length()!=0
                 && catatan.tanggal!=null && catatan.tanggal.length()!=0;
     }
+
+
 }

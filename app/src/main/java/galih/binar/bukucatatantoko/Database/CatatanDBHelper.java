@@ -34,6 +34,29 @@ public class CatatanDBHelper {
 
     private static String COLLECTION = "catatan";
 
+    public void updateCatatan(String id, Catatan catatan, final OnFinishListener listener){
+        HashMap<String,Object> mapCatatan = new HashMap<>();
+
+        mapCatatan.put(Catatan.COL_NAMA,catatan.nama);
+        mapCatatan.put(Catatan.COL_BANYAK,catatan.banyak_barang);
+        mapCatatan.put(Catatan.COL_PEMASOK,catatan.pemasok);
+        mapCatatan.put(Catatan.COL_TANGGAL,catatan.tanggal);
+        mapCatatan.put(Catatan.COL_SATUAN,catatan.satuan);
+
+        db.collection(COLLECTION).document(id).set(mapCatatan)
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        listener.onFinished(false);
+                    }
+                }).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                listener.onFinished(true);
+            }
+        });
+    }
+
     public void hapusCatatan(String id,final OnFinishListener listener){
         db.collection(COLLECTION).document(id).delete()
                 .addOnSuccessListener(new OnSuccessListener<Void>() {

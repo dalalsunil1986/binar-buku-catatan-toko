@@ -16,6 +16,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tambah_barang">TAMBAH BARANG</string>
+    <string name="update_barang">UPDATE BARANG</string>
 
     <string-array name="satuan">
         <item>PCS</item>

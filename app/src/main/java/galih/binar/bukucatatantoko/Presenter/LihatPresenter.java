@@ -1,5 +1,6 @@
 package galih.binar.bukucatatantoko.Presenter;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
@@ -12,6 +13,7 @@ import galih.binar.bukucatatantoko.Interfaces.HapusEditCatatanListener;
 import galih.binar.bukucatatantoko.Interfaces.OnFinishListener;
 import galih.binar.bukucatatantoko.Model.Catatan;
 import galih.binar.bukucatatantoko.View.Adapter.ListCatatanAdapter;
+import galih.binar.bukucatatantoko.View.EditCatatanActivity;
 import galih.binar.bukucatatantoko.View.Fragments.LihatFragment;
 
 /**
@@ -54,7 +56,9 @@ public class LihatPresenter extends Presenter<LihatFragment> {
 
             @Override
             public void edit(String id) {
-                c.showT("Edit : "+id);
+                Intent intent = new Intent(fragment.getActivity(), EditCatatanActivity.class);
+                intent.putExtra("ID",id);
+                activity.startActivity(intent);
             }
         });
 
