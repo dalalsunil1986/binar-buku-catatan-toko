@@ -22,12 +22,17 @@ import galih.binar.bukucatatantoko.Database.PenggunaDBHelper;
 import galih.binar.bukucatatantoko.Interfaces.GetDataFromDB;
 import galih.binar.bukucatatantoko.Model.Pengguna;
 import galih.binar.bukucatatantoko.R;
+import galih.binar.bukucatatantoko.View.Fragments.LihatFragment;
+import galih.binar.bukucatatantoko.View.Fragments.TambahFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     PenggunaDBHelper penggunaDBHelper;
     FirebaseAuth mAuth;
+
+    LihatFragment lihatFragment;
+    TambahFragment tambahFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +42,16 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void init(){
+        initFragments();
         mAuth = FirebaseAuth.getInstance();
         initToolBarAndDrawer();
         initNavigationView();
+        navigateToFragment(lihatFragment,"Lihat Catatan");
+    }
+
+    private void initFragments() {
+        lihatFragment = new LihatFragment();
+        tambahFragment = new TambahFragment();
     }
 
     private void initNavigationView() {
@@ -122,8 +134,10 @@ public class MainActivity extends AppCompatActivity
 
         switch (id){
             case R.id.nav_lihat_catatan:
+                navigateToFragment(lihatFragment,"Lihat Catatan");
                 break;
             case R.id.nav_tambah_catatan:
+                navigateToFragment(tambahFragment,"Tambah Catatan");
                 break;
             case R.id.nav_logout:
                 logout();

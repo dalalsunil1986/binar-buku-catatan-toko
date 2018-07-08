@@ -1,13 +1,122 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="galih.binar.bukucatatantoko.View.Fragments.LihatFragment">
+    >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+        <variable
+            name="presenter"
+            type="galih.binar.bukucatatantoko.Presenter.LihatPresenter"/>
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        tools:context="galih.binar.bukucatatantoko.View.Fragments.LihatFragment">
 
-</FrameLayout>
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <android.support.v7.widget.CardView
+                    style="@style/CardView"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:textAlignment="center"
+                                android:textStyle="bold"
+                                android:text="Edit"
+                                android:padding="5dp"
+                                android:layout_width="60dp"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:textAlignment="center"
+                                android:textStyle="bold"
+                                android:text="Hapus"
+                                android:padding="5dp"
+                                android:layout_width="60dp"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:textAlignment="center"
+                                android:textStyle="bold"
+                                android:text="Nama Barang"
+                                android:padding="5dp"
+                                android:layout_width="250dp"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:textAlignment="center"
+                                android:textStyle="bold"
+                                android:text="Banyak"
+                                android:padding="5dp"
+                                android:layout_width="60dp"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:textAlignment="center"
+                                android:textStyle="bold"
+                                android:text="Satuan"
+                                android:padding="5dp"
+                                android:layout_width="60dp"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:textAlignment="center"
+                                android:textStyle="bold"
+                                android:text="Pemasok"
+                                android:padding="5dp"
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content" />
+
+                            <TextView
+                                android:textAlignment="center"
+                                android:textStyle="bold"
+                                android:text="Tanggal"
+                                android:padding="5dp"
+                                android:layout_width="150dp"
+                                android:layout_height="wrap_content" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/frag_lihat_list_catatan"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </android.support.v7.widget.RecyclerView>
+
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+
+    </FrameLayout>
+</layout>
