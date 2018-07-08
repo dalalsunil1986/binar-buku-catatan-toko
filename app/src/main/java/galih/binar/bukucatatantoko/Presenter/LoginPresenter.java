@@ -85,6 +85,7 @@ public class LoginPresenter extends Presenter<LoginActivity> {
                                 c.showT("Login berhasil.");
                                 goToMain();
                             }else{
+                                c.disL();
                                 c.showT("Login gagal, cek kembali email, password dan koneksi internet anda.");
                             }
 

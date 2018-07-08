@@ -80,7 +80,6 @@ public class MainActivity extends AppCompatActivity
                         nama.setText(pengguna.nama);
                         email.setText(pengguna.email);
 
-
                     }
                 });
 
