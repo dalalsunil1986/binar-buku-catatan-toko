@@ -1,6 +1,8 @@
 package galih.binar.bukucatatantoko.Presenter;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -9,8 +11,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import galih.binar.bukucatatantoko.Database.PenggunaDBHelper;
 import galih.binar.bukucatatantoko.Helper.Common;
+import galih.binar.bukucatatantoko.Interfaces.GetDataFromDB;
 import galih.binar.bukucatatantoko.Model.Credential;
+import galih.binar.bukucatatantoko.Model.Pengguna;
+import galih.binar.bukucatatantoko.R;
 import galih.binar.bukucatatantoko.View.LoginActivity;
 import galih.binar.bukucatatantoko.View.MainActivity;
 
@@ -24,6 +30,7 @@ public class LoginPresenter extends Presenter<LoginActivity> {
     private FirebaseUser currentUser;
     public Credential credential;
     private Common c;
+    private PenggunaDBHelper penggunaDBHelper;
 
     public LoginPresenter(LoginActivity activity){
         super.setActivity(activity);
@@ -31,9 +38,9 @@ public class LoginPresenter extends Presenter<LoginActivity> {
     }
 
     private void init() {
+        c = new Common(activity);
         initFirebaseAuth();
         credential = new Credential();
-        c = new Common(activity);
     }
 
     private void initFirebaseAuth() {
@@ -46,8 +53,23 @@ public class LoginPresenter extends Presenter<LoginActivity> {
     }
 
     private void goToMain(){
-        Intent intent = new Intent(activity, MainActivity.class);
-        activity.startActivity(intent);
+        penggunaDBHelper = new PenggunaDBHelper();
+        c.showL("Mengautentikasi...");
+        penggunaDBHelper
+                .getPengguna(mAuth.getCurrentUser().getEmail(), new GetDataFromDB() {
+                    @Override
+                    public void getData(Boolean status, Object data) {
+                        c.disL();
+                        Pengguna pengguna = (Pengguna)data;
+
+                        SharedPreferences.Editor pref = activity.getSharedPreferences("POSISI", Context.MODE_PRIVATE).edit();
+                        pref.putString("POSISI", pengguna.posisi);
+                        pref.commit();
+
+                        Intent intent = new Intent(activity, MainActivity.class);
+                        activity.startActivity(intent);
+                    }
+                });
     }
 
     public void doLogin(){
@@ -65,6 +87,7 @@ public class LoginPresenter extends Presenter<LoginActivity> {
                             }else{
                                 c.showT("Login gagal, cek kembali email, password dan koneksi internet anda.");
                             }
+
                         }
                     });
         }else{

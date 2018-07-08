@@ -23,9 +23,12 @@ public class ListCatatanAdapter extends RecyclerView.Adapter<ListCatatanAdapterV
     public ArrayList<Catatan> listCatatan;
     HapusEditCatatanListener listener;
 
-    public ListCatatanAdapter(ArrayList<Catatan> listCatatan, HapusEditCatatanListener listener) {
+    public Boolean gudang;
+
+    public ListCatatanAdapter(ArrayList<Catatan> listCatatan, HapusEditCatatanListener listener, Boolean gudang) {
         this.listCatatan = listCatatan;
         this.listener = listener;
+        this.gudang = gudang;
     }
 
     @NonNull
@@ -57,6 +60,11 @@ public class ListCatatanAdapter extends RecyclerView.Adapter<ListCatatanAdapterV
                         listener.edit(catatan.id);
                     }
                 });
+
+        if(!gudang){
+            holder.binding.fragLihatItemCatatanEdit.setVisibility(View.GONE);
+            holder.binding.fragLihatItemCatatanHapus.setVisibility(View.GONE);
+        }
     }
 
     @Override

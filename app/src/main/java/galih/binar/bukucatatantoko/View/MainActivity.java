@@ -57,8 +57,11 @@ public class MainActivity extends AppCompatActivity
     private void initNavigationView() {
         final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         final View header = navigationView.getHeaderView(0);
+
         final TextView nama = header.findViewById(R.id.act_main_nav_nama);
         final TextView email = header.findViewById(R.id.act_main_nav_email);
+
+        final Menu nav_Menu = navigationView.getMenu();
 
         penggunaDBHelper = new PenggunaDBHelper();
 
@@ -68,8 +71,16 @@ public class MainActivity extends AppCompatActivity
                     public void getData(Boolean status, Object data) {
                         Pengguna pengguna = (Pengguna)data;
 
+                        if(pengguna.posisi.equals("gudang")){
+                            nav_Menu.findItem(R.id.nav_tambah_catatan).setVisible(true);
+                        }else{
+                            nav_Menu.findItem(R.id.nav_tambah_catatan).setVisible(false);
+                        }
+
                         nama.setText(pengguna.nama);
                         email.setText(pengguna.email);
+
+
                     }
                 });
 

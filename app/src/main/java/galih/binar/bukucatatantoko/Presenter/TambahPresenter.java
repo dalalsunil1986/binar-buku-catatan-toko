@@ -96,6 +96,9 @@ public class TambahPresenter extends Presenter<TambahFragment> {
         }else{
             c.showT("Tidak boleh ada field yang kosong.");
         }
+
+        catatan = new Catatan();
+        fragment.binding.setPresenter(this);
     }
 
     private boolean validasiInputCatatan(){
