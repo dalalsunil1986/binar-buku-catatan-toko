@@ -25,10 +25,92 @@
                 android:layout_height="match_parent">
 
                 <android.support.v7.widget.CardView
+                style="@style/CardView"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:textAlignment="center"
+                            android:textStyle="bold"
+                            android:text="Edit"
+                            android:padding="5dp"
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:textAlignment="center"
+                            android:textStyle="bold"
+                            android:text="Hapus"
+                            android:padding="5dp"
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:textAlignment="center"
+                            android:textStyle="bold"
+                            android:text="Nama Barang"
+                            android:padding="5dp"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:textAlignment="center"
+                            android:textStyle="bold"
+                            android:text="Banyak"
+                            android:padding="5dp"
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:textAlignment="center"
+                            android:textStyle="bold"
+                            android:text="Satuan"
+                            android:padding="5dp"
+                            android:layout_width="60dp"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:textAlignment="center"
+                            android:textStyle="bold"
+                            android:text="Pemasok"
+                            android:padding="5dp"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:textAlignment="center"
+                            android:textStyle="bold"
+                            android:text="Tanggal"
+                            android:padding="5dp"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/frag_lihat_belum_ada"
                     style="@style/CardView"
                     android:layout_marginHorizontal="10dp"
                     android:layout_marginBottom="5dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 
@@ -43,60 +125,13 @@
                             android:layout_height="wrap_content">
 
                             <TextView
-                                android:textAlignment="center"
+                                android:textAlignment="textStart"
                                 android:textStyle="bold"
-                                android:text="Edit"
+                                android:text="Belum ada catatan."
                                 android:padding="5dp"
-                                android:layout_width="60dp"
+                                android:layout_width="790dp"
                                 android:layout_height="wrap_content" />
 
-                            <TextView
-                                android:textAlignment="center"
-                                android:textStyle="bold"
-                                android:text="Hapus"
-                                android:padding="5dp"
-                                android:layout_width="60dp"
-                                android:layout_height="wrap_content" />
-
-                            <TextView
-                                android:textAlignment="center"
-                                android:textStyle="bold"
-                                android:text="Nama Barang"
-                                android:padding="5dp"
-                                android:layout_width="250dp"
-                                android:layout_height="wrap_content" />
-
-                            <TextView
-                                android:textAlignment="center"
-                                android:textStyle="bold"
-                                android:text="Banyak"
-                                android:padding="5dp"
-                                android:layout_width="60dp"
-                                android:layout_height="wrap_content" />
-
-                            <TextView
-                                android:textAlignment="center"
-                                android:textStyle="bold"
-                                android:text="Satuan"
-                                android:padding="5dp"
-                                android:layout_width="60dp"
-                                android:layout_height="wrap_content" />
-
-                            <TextView
-                                android:textAlignment="center"
-                                android:textStyle="bold"
-                                android:text="Pemasok"
-                                android:padding="5dp"
-                                android:layout_width="150dp"
-                                android:layout_height="wrap_content" />
-
-                            <TextView
-                                android:textAlignment="center"
-                                android:textStyle="bold"
-                                android:text="Tanggal"
-                                android:padding="5dp"
-                                android:layout_width="150dp"
-                                android:layout_height="wrap_content" />
 
                         </LinearLayout>
 
